@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 
 def index(req):
-    return HttpResponse('success')
+    return render(req, 'signin.html')
