@@ -1,0 +1,16 @@
+{% extends "records/layout.html" %}
+
+{% block title %}
+  Plans
+{% endblock title %}
+
+{% block body %}
+
+<form action={% url 'records:plans' user %}  method="POST">
+      {% csrf_token %}
+      <input type="text" name="plans" id="">
+      <input type="date" name="date" id="">
+      <input type="time" name="time" id="">
+      <input type="submit" value="Submit">
+  </form>
+{% endblock body %}

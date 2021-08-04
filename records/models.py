@@ -4,18 +4,14 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
 
-class User(models.Model):
-    name = models.TextField(max_length=40, blank=False)
+class Person(models.Model):
+    name = models.TextField(max_length=40, blank=False, unique=True)
     age = models.IntegerField(
         validators=[MinValueValidator(1),
                     MaxValueValidator(100)])
     email = models.EmailField(max_length=254, blank=False)
-    phone = models.IntegerField(validators=[MinValueValidator(10000000000)],
-                                blank=False)
-    image = models.ImageField(upload_to='upload/',
-                              height_field=None,
-                              width_field=None,
-                              max_length=None)
+    phone = models.IntegerField(null=True)
+    image = models.ImageField(upload_to='upload/', )
     first_meeting = models.TextField(blank=False)
     friendship = models.IntegerField(
         validators=[MinValueValidator(1),
@@ -28,9 +24,10 @@ class User(models.Model):
 
 
 class Plan(models.Model):
-    profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Person, on_delete=models.CASCADE)
     plans = models.TextField()
-    datetime = models.DateTimeField()
+    time = models.TimeField()
+    date = models.DateField()
 
     def __str__(self):
         return self.plans

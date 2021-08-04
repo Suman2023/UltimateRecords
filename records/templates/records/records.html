@@ -1,0 +1,33 @@
+{% extends "records/layout.html" %}
+{% block title %} records {% endblock title%}
+{% block body %}
+{% for profile in profiles %}
+
+  <img src="{{profile.image.url}}" alt="profile" height="100px" width="100px" />
+  <p>Name: <b>{{profile.name}}</b></p>
+  <p>Age: <b>{{profile.age}}</b></p>
+  <p>Email: <b>{{profile.email}}</b></p>
+  <p>Phone: <b>{{profile.phone}}</b></p>
+  <p>First_Meeting: <b>{{profile.first_meeting}}</b></p>
+  <p>Friendship%: <b>{{profile.friendship}}</b></p>
+  <p>Choices: <b>{{profile.choices}}</b></p>
+  <p>Plans: <b>{{profile.any_plans}}</b></p>
+  <button onclick="location.href='{% url 'records:updateProfile' profile.name %}'">
+    Update
+  </button>
+  {% if profile.any_plans %}
+  <button onclick="location.href='{% url 'records:seePlans' profile.name %}'">
+    Plans
+  </button>
+  <button onclick="location.href='{% url 'records:plans' profile.name %}'">
+    Add Plan
+  </button>
+  {% endif %}
+
+  <br /><br /><br /><br /><br /><br />
+  {% empty %}
+  <button onclick="location.href='{% url 'records:profile' %}'">
+    Add Person
+  </button>
+{% endfor %}
+{% endblock body %}

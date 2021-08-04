@@ -1,0 +1,22 @@
+{% extends "records/layout.html" %}
+
+{% load records_extras %}
+
+{% block title %}
+  Plans
+{% endblock title %}
+
+{% block body %}
+
+  <form action={% url 'records:updatePlan' user %}  method="POST">
+    {% for plan in  plans %}
+      {% csrf_token %}
+      <input type="text" name="id" id="" value="{{plan.id}}" readonly>
+      <input type="text" name="plan" id="" value="{{plan.plans}}" >
+      <input type="date"  name="date" id="" value="{{var|con:plan.date}}">
+      <input type="time" name="time" id="" value="{{var|con:plan.time}}">
+      <input type="submit" value="Update">
+    {% endfor %}
+        
+  </form>
+{% endblock body %}

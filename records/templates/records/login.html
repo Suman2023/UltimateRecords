@@ -1,0 +1,15 @@
+{% extends "records/layout.html" %}
+
+{% block title %}
+  Login
+{% endblock title %}
+
+
+{% block body %}
+  <form action="{% url 'records:login_view' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="username" id="" placeholder="Username">
+      <input type="password" name="password" id="" placeholder="Password">
+      <input type="submit" value="SignUP">
+  </form>
+{% endblock body %}
